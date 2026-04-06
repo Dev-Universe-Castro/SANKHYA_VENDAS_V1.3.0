@@ -1,0 +1,315 @@
+/* Otimizações de performance */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* PWA - Prevenir zoom e comportamentos web */
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* PWA - Comportamento nativo no mobile */
+body {
+  /* Prevenir seleção de texto em áreas não interativas */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  
+  /* Prevenir zoom de pinça e comportamentos touch indesejados */
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  
+  /* Ocupar toda a tela (safe area para notch do iPhone) */
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+/* Header fixo no mobile */
+@media (max-width: 1024px) {
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+  }
+}
+
+/* Permitir seleção em inputs, textareas e áreas de conteúdo */
+input,
+textarea,
+[contenteditable="true"],
+.selectable {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  touch-action: auto;
+}
+
+/* Remover efeitos de toque no iOS */
+button,
+a,
+[role="button"] {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+/* Transições suaves para navegação */
+.page-transition {
+  animation: fadeIn 0.15s ease-in-out;
+}
+
+/* App Shell - Native feel */
+@media (max-width: 1024px) {
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  }
+  
+  /* Remove bordas de tabelas no mobile */
+  table {
+    border: none !important;
+  }
+  
+  table th,
+  table td {
+    border: none !important;
+  }
+  
+  /* Sombras suaves para cards */
+  [data-slot="card"] {
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  }
+  
+  /* Bottom sheet overlay */
+  [data-slot="sheet-overlay"] {
+    backdrop-filter: blur(8px);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animação para splash screen */
+@keyframes splashFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes splashPulse {
+  0%, 100% {
+    opacity: 0.05;
+  }
+  50% {
+    opacity: 0.1;
+  }
+}
+
+/* Otimizar renderização de imagens */
+img {
+  content-visibility: auto;
+}
+
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: oklch(0.98 0 0);
+  --foreground: oklch(0.25 0.01 240);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.25 0.01 240);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.25 0.01 240);
+  --primary: oklch(0.68 0.15 145);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.32 0.02 235);
+  --secondary-foreground: oklch(1 0 0);
+  --muted: oklch(0.95 0.005 240);
+  --muted-foreground: oklch(0.55 0.01 240);
+  --accent: oklch(0.68 0.15 145);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.9 0.005 240);
+  --input: oklch(0.95 0.005 240);
+  --ring: oklch(0.68 0.15 145);
+  --radius: 0.5rem;
+  --sidebar: oklch(1 0 0);
+  --sidebar-foreground: oklch(0.25 0.01 240);
+  --sidebar-primary: oklch(0.68 0.15 145);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.95 0.005 240);
+  --sidebar-accent-foreground: oklch(0.25 0.01 240);
+  --sidebar-border: oklch(0.9 0.005 240);
+  --sidebar-ring: oklch(0.68 0.15 145);
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Otimização de performance para transições */
+  * {
+    transition-duration: 100ms !important;
+  }
+
+  /* Melhorar rendering de animações */
+  .animate-spin,
+  .animate-pulse,
+  .animate-bounce {
+    will-change: transform;
+  }
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.2s ease-in;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(5px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Ocultar scrollbar mas manter funcionalidade */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Para navegadores que usam CSS Scrollbars Standard (Firefox) */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #76BA1B transparent;
+  }
+
+  /* Ocultar scrollbar no mobile (telas menores que 1024px) */
+  @media (max-width: 1023px) {
+    ::-webkit-scrollbar {
+      display: none;
+      width: 0;
+      height: 0;
+    }
+    * {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none !important; /* Firefox */
+    }
+  }
+
+  /* Mostrar scrollbar customizado apenas no desktop (1024px ou mais) */
+  @media (min-width: 1024px) {
+    ::-webkit-scrollbar {
+      width: 8px; /* Largura da barra vertica */
+      height: 8px; /* Altura da barra horizontal */
+      display: block;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(242, 242, 242, 0.5); /* Fundo sútil / cinza claro */
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #76BA1B; /* Cor base / Verde principal */
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #5d9813; /* Um verde um pouco mais escuro no hover */
+    }
+  }
+
+  /* Z-index customizado para hierarquia de modais */
+  [data-produto-selector] {
+    z-index: 50;
+  }
+
+  /* Garantir que dropdowns apareçam acima de tudo */
+  [data-radix-popper-content-wrapper] {
+    z-index: 100 !important;
+  }
+
+  [data-slot="dropdown-menu-content"] {
+    z-index: 100 !important;
+  }
+
+  [data-estoque-modal] {
+    z-index: 60;
+  }
+}
