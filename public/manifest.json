@@ -1,0 +1,30 @@
+{
+  "name": "Predict",
+  "short_name": "Predict",
+  "description": "CRM Intuitivo com IA",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#24292E",
+  "theme_color": "#24292E",
+  "icons": [
+    {
+      "src": "/predict-icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/predict-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/predict-icon.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
