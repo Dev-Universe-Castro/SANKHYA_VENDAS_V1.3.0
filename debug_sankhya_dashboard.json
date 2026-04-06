@@ -1,0 +1,34 @@
+{
+  "payload": {
+    "serviceName": "CRUDServiceProvider.loadRecords",
+    "requestBody": {
+      "dataSet": {
+        "rootEntity": "CabecalhoNota",
+        "includePresentationFields": "N",
+        "offsetPage": null,
+        "disableRowsLimit": false,
+        "entity": {
+          "fieldset": {
+            "list": "NUNOTA,DTNEG,CODPARC,VLRNOTA,TIPMOV,Parceiro_NOMEPARC"
+          }
+        },
+        "criteria": {
+          "expression": {
+            "$": "TIPMOV = 'V' AND DTNEG >= '25/01/2026' AND DTNEG <= '24/02/2026'"
+          }
+        }
+      }
+    }
+  },
+  "response": {
+    "serviceName": "CRUDServiceProvider.loadRecords",
+    "status": "0",
+    "pendingPrinting": "false",
+    "transactionId": "DD50D948E0669A9E8E5AF85CB6003A25",
+    "tsError": {
+      "tsErrorCode": "CORE_E04064",
+      "tsErrorLevel": "ERROR"
+    },
+    "statusMessage": "Descritor do campo 'Parceiro_NOMEPARC' inválido."
+  }
+}

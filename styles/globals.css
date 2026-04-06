@@ -1,0 +1,166 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #F8FAFC;
+  --foreground: #24292E;
+  --card: #FFFFFF;
+  --card-foreground: #24292E;
+  --popover: #FFFFFF;
+  --popover-foreground: #24292E;
+  --primary: #2ECC71;
+  --primary-foreground: #FFFFFF;
+  --secondary: #24292E;
+  --secondary-foreground: #F8FAFC;
+  --muted: #F1F5F9;
+  --muted-foreground: #64748B;
+  --accent: #2ECC71;
+  --accent-foreground: #FFFFFF;
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(1 0 0);
+  --border: #E2E8F0;
+  --input: #E2E8F0;
+  --ring: #2ECC71;
+  --chart-1: #2ECC71;
+  --chart-2: #24292E;
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.625rem;
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #24292E;
+  --sidebar-primary: #2ECC71;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: rgba(46, 204, 113, 0.1);
+  --sidebar-accent-foreground: #2ECC71;
+  --sidebar-border: #E2E8F0;
+  --sidebar-ring: #2ECC71;
+  --header: #24292E;
+  --footer: #24292E;
+}
+
+.dark {
+  --background: #0F172A;
+  --foreground: #F8FAFC;
+  --card: #1E293B;
+  --card-foreground: #F8FAFC;
+  --popover: #1E293B;
+  --popover-foreground: #F8FAFC;
+  --primary: #2ECC71;
+  --primary-foreground: #FFFFFF;
+  --secondary: #24292E;
+  --secondary-foreground: #F8FAFC;
+  --muted: #334155;
+  --muted-foreground: #94A3B8;
+  --accent: #2ECC71;
+  --accent-foreground: #FFFFFF;
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: #334155;
+  --input: #334155;
+  --ring: #2ECC71;
+  --chart-1: #2ECC71;
+  --chart-2: #24292E;
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: #111827;
+  --sidebar-foreground: #F8FAFC;
+  --sidebar-primary: #2ECC71;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: rgba(46, 204, 113, 0.15);
+  --sidebar-accent-foreground: #F8FAFC;
+  --sidebar-border: #1F2937;
+  --sidebar-ring: #2ECC71;
+}
+
+@theme inline {
+  --font-sans: 'Roboto', sans-serif;
+  --font-montserrat: 'Montserrat', sans-serif;
+  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground overflow-x-hidden;
+  }
+  
+  /* Esconder barra de rolagem globalmente no mobile mantendo o scroll */
+  @media (max-width: 768px) {
+    html, body {
+      overflow-x: hidden !important;
+      position: relative;
+      height: 100%;
+    }
+    
+    * {
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+    }
+    
+    *::-webkit-scrollbar {
+      width: 0 !important;
+      height: 0 !important;
+      display: none !important;
+      background: transparent !important;
+    }
+  }
+}
+
+@layer utilities {
+  /* Ocultar scrollbar mas manter funcionalidade */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow-y: auto;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Garantir que elementos filhos possam rolar */
+  .min-h-0 {
+    min-height: 0;
+  }
+}
